@@ -1,0 +1,225 @@
+..F.F.F.F.F..FF..F.F.F                                                   [100%]
+================================== FAILURES ===================================
+___________________________ test_average_empty_list ___________________________
+
+    def test_average_empty_list():
+        # 沒有任何成績時應回傳 0，而不是程式當掉
+>       assert grade.average([]) == 0
+               ^^^^^^^^^^^^^^^^^
+
+tests\test_grade.py:22: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+scores = []
+
+    def average(scores):
+        total = 0
+        for s in scores:
+            total = total + s
+>       return total / len(scores)
+               ^^^^^^^^^^^^^^^^^^^
+E       ZeroDivisionError: division by zero
+
+src\grade.py:8: ZeroDivisionError
+________________________ test_letter_boundaries[90-A] _________________________
+
+score = 90, expected = 'A'
+
+    @pytest.mark.parametrize("score, expected", [
+        (100, "A"),
+        (90, "A"),   # 邊界：剛好 90 分應該是 A
+        (89, "B"),
+        (80, "B"),   # 邊界
+        (79, "C"),
+        (70, "C"),   # 邊界
+        (69, "D"),
+        (60, "D"),   # 邊界：60 分及格
+        (59, "F"),
+        (0, "F"),
+    ])
+    def test_letter_boundaries(score, expected):
+>       assert grade.letter(score) == expected
+E       AssertionError: assert 'B' == 'A'
+E         
+E         - A
+E         + B
+
+tests\test_grade.py:40: AssertionError
+________________________ test_letter_boundaries[80-B] _________________________
+
+score = 80, expected = 'B'
+
+    @pytest.mark.parametrize("score, expected", [
+        (100, "A"),
+        (90, "A"),   # 邊界：剛好 90 分應該是 A
+        (89, "B"),
+        (80, "B"),   # 邊界
+        (79, "C"),
+        (70, "C"),   # 邊界
+        (69, "D"),
+        (60, "D"),   # 邊界：60 分及格
+        (59, "F"),
+        (0, "F"),
+    ])
+    def test_letter_boundaries(score, expected):
+>       assert grade.letter(score) == expected
+E       AssertionError: assert 'C' == 'B'
+E         
+E         - B
+E         + C
+
+tests\test_grade.py:40: AssertionError
+________________________ test_letter_boundaries[70-C] _________________________
+
+score = 70, expected = 'C'
+
+    @pytest.mark.parametrize("score, expected", [
+        (100, "A"),
+        (90, "A"),   # 邊界：剛好 90 分應該是 A
+        (89, "B"),
+        (80, "B"),   # 邊界
+        (79, "C"),
+        (70, "C"),   # 邊界
+        (69, "D"),
+        (60, "D"),   # 邊界：60 分及格
+        (59, "F"),
+        (0, "F"),
+    ])
+    def test_letter_boundaries(score, expected):
+>       assert grade.letter(score) == expected
+E       AssertionError: assert 'D' == 'C'
+E         
+E         - C
+E         + D
+
+tests\test_grade.py:40: AssertionError
+________________________ test_letter_boundaries[60-D] _________________________
+
+score = 60, expected = 'D'
+
+    @pytest.mark.parametrize("score, expected", [
+        (100, "A"),
+        (90, "A"),   # 邊界：剛好 90 分應該是 A
+        (89, "B"),
+        (80, "B"),   # 邊界
+        (79, "C"),
+        (70, "C"),   # 邊界
+        (69, "D"),
+        (60, "D"),   # 邊界：60 分及格
+        (59, "F"),
+        (0, "F"),
+    ])
+    def test_letter_boundaries(score, expected):
+>       assert grade.letter(score) == expected
+E       AssertionError: assert 'F' == 'D'
+E         
+E         - D
+E         + F
+
+tests\test_grade.py:40: AssertionError
+________________________ test_letter_out_of_range[-1] _________________________
+
+bad_score = -1
+
+    @pytest.mark.parametrize("bad_score", [-1, 101])
+    def test_letter_out_of_range(bad_score):
+>       with pytest.raises(ValueError):
+E       Failed: DID NOT RAISE ValueError
+
+tests\test_grade.py:45: Failed
+________________________ test_letter_out_of_range[101] ________________________
+
+bad_score = 101
+
+    @pytest.mark.parametrize("bad_score", [-1, 101])
+    def test_letter_out_of_range(bad_score):
+>       with pytest.raises(ValueError):
+E       Failed: DID NOT RAISE ValueError
+
+tests\test_grade.py:45: Failed
+_____________________________ test_gpa_empty_list _____________________________
+
+    def test_gpa_empty_list():
+>       assert grade.gpa([]) == 0
+               ^^^^^^^^^^^^^
+
+tests\test_grade.py:61: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+scores = []
+
+    def gpa(scores):
+        points = 0
+        for s in scores:
+            g = letter(s)
+            if g == "A":
+                points = points + 4
+            if g == "B":
+                points = points + 3
+            if g == "C":
+                points = points + 2
+            if g == "D":
+                points = points + 1
+>       return points / len(scores)
+               ^^^^^^^^^^^^^^^^^^^^
+E       ZeroDivisionError: division by zero
+
+src\grade.py:36: ZeroDivisionError
+_________________ test_load_csv_skips_blank_lines_and_spaces __________________
+
+tmp_path = WindowsPath('C:/Users/Hsu/AppData/Local/Temp/pytest-of-Hsu/pytest-0/test_load_csv_skips_blank_line0')
+
+    def test_load_csv_skips_blank_lines_and_spaces(tmp_path):
+        f = tmp_path / "scores.csv"
+        f.write_text("王小明, 92\n\n李小華 ,85\n\n", encoding="utf-8")
+>       assert grade.load_csv(f) == {"王小明": 92, "李小華": 85}
+               ^^^^^^^^^^^^^^^^^
+
+tests\test_grade.py:75: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+path = WindowsPath('C:/Users/Hsu/AppData/Local/Temp/pytest-of-Hsu/pytest-0/test_load_csv_skips_blank_line0/scores.csv')
+
+    def load_csv(path):
+        # 每行格式：姓名,分數
+        result = {}
+        f = open(path, encoding="utf-8")
+        for line in f.readlines():
+>           name, score = line.split(",")
+            ^^^^^^^^^^^
+E           ValueError: not enough values to unpack (expected 2, got 1)
+
+src\grade.py:44: ValueError
+_________________________________ test_report _________________________________
+
+tmp_path = WindowsPath('C:/Users/Hsu/AppData/Local/Temp/pytest-of-Hsu/pytest-0/test_report0')
+
+    def test_report(tmp_path):
+        f = tmp_path / "scores.csv"
+        f.write_text("王小明,92\n陳大文,60\n", encoding="utf-8")
+        text = grade.report(f)
+        assert "王小明 92 A" in text
+>       assert "陳大文 60 D" in text
+E       AssertionError: assert '陳大文 60 D' in '王小明 92 A\n陳大文 60 F\n平均 76.0'
+
+tests\test_grade.py:92: AssertionError
+=============================== tests coverage ================================
+_______________ coverage: platform win32, python 3.11.9-final-0 _______________
+
+Name           Stmts   Miss  Cover   Missing
+--------------------------------------------
+src\grade.py      45      4    91%   31, 35, 59-60
+--------------------------------------------
+TOTAL             45      4    91%
+=========================== short test summary info ===========================
+FAILED tests/test_grade.py::test_average_empty_list - ZeroDivisionError: divi...
+FAILED tests/test_grade.py::test_letter_boundaries[90-A] - AssertionError: as...
+FAILED tests/test_grade.py::test_letter_boundaries[80-B] - AssertionError: as...
+FAILED tests/test_grade.py::test_letter_boundaries[70-C] - AssertionError: as...
+FAILED tests/test_grade.py::test_letter_boundaries[60-D] - AssertionError: as...
+FAILED tests/test_grade.py::test_letter_out_of_range[-1] - Failed: DID NOT RA...
+FAILED tests/test_grade.py::test_letter_out_of_range[101] - Failed: DID NOT R...
+FAILED tests/test_grade.py::test_gpa_empty_list - ZeroDivisionError: division...
+FAILED tests/test_grade.py::test_load_csv_skips_blank_lines_and_spaces - Valu...
+FAILED tests/test_grade.py::test_report - AssertionError: assert '陳大文 60 D...
+10 failed, 12 passed in 0.21s
