@@ -16,10 +16,10 @@ jobs:
 
     steps:
       - name: 下載程式碼
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: 安裝 Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v7
         with:
           python-version: ${{ matrix.python-version }}
 
