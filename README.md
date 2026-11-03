@@ -1,6 +1,6 @@
 # 成績計算小工具（軟體工程自主學習）
 
-![自動化測試](https://github.com/<你的帳號>/grade-calculator/actions/workflows/test.yml/badge.svg)
+![自動化測試](https://github.com/WhiteRabbit0812/grade-calculator/actions/workflows/test.yml/badge.svg)
 
 讀取 `姓名,分數` 格式的 CSV，輸出每位學生的等第與全班平均。
 這個專案是軟體工程課「自主學習」的實作：為既有程式補單元測試、分析覆蓋率，並用 GitHub Actions 自動化測試。
